@@ -324,6 +324,7 @@ NonSemantical=({WhiteSpace}|{LineComment}|{DocCommentBlock}|{BlockComment})*
 
 <IMPORT> {
   "{" { yybegin(IMPORT_CONTINUATION); return SoyTypes.LBRACE; }
+  "*" { yybegin(IMPORT_CONTINUATION); return SoyTypes.STAR; }
   . { yypop(); return SoyTypes.OTHER; }
 }
 

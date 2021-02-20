@@ -327,12 +327,14 @@ CatchallBraces ::= <<BracedTag ()>> | <<EndTag_ ()>>
 
 // Import
 
-Import ::= IMPORT_OPEN LBRACE ImportedSymbol (COMMA ImportedSymbol)* RBRACE FROM STRING_LITERAL SEMICOLON {
+Import ::= IMPORT_OPEN (LBRACE ImportedSymbol (COMMA ImportedSymbol)* RBRACE | ImportedWildcard) FROM STRING_LITERAL SEMICOLON {
   pin = 1
   recoverWhile = "recoverEndOfImport"
 }
 
 private ImportedSymbol ::= IDENTIFIER_WORD [ AS IDENTIFIER_WORD ]
+
+private ImportedWildcard ::= STAR AS IDENTIFIER_WORD
 
 // Namespace block
 
